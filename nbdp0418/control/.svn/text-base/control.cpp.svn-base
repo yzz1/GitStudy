@@ -1,0 +1,468 @@
+#include "control.h"
+#include <QDebug>
+#include "logging.h"
+
+Control* Control::m_pInstance = 0;
+
+/****************************************************************************
+**
+** Control::~Control
+** 功能概述: 析构函数
+** 参数说明
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+Control::~Control()
+{
+    m_pInstance = 0;
+}
+
+/****************************************************************************
+**
+** Control::~Control
+** 功能概述: 取得单实例
+** 参数说明
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+Control* Control::get()
+{
+    if (0 == m_pInstance)
+    {
+        m_pInstance = new Control();
+    }
+
+    return m_pInstance;
+}
+
+/****************************************************************************
+**
+** Control::~Control
+** 功能概述: 构造函数
+** 参数说明
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+Control::Control()
+{
+    connect(Transit::get(), SIGNAL(SignalCallSetup(CallClass*)), this, SLOT(SlotCallSetup(CallClass*)));
+    connect(Transit::get(), SIGNAL(SignalConnectingCancel()), this, SLOT(SlotConnectingCancel()));
+    connect(Transit::get(), SIGNAL(SignalTalkSend(QString, QString)), this, SLOT(SlotTalkSend(QString, QString)));
+    connect(Transit::get(), SIGNAL(SignalInterupt()), this, SLOT(SlotInterupt()));
+    connect(Transit::get(), SIGNAL(SignalScan(ScanClass*)), this, SLOT(SlotScan(ScanClass*)));
+    connect(Transit::get(), SIGNAL(SignalCheck()), this, SLOT(SlotCheck()));
+    connect(Transit::get(), SIGNAL(SignalMarkTrans()), this, SLOT(SlotMarkTrans()));
+    connect(Transit::get(), SIGNAL(SignalSpaceTrans()), this, SLOT(SlotSpaceTrans()));
+    connect(Transit::get(), SIGNAL(SignalDotTrans()), this, SLOT(SlotDotTrans()));
+    connect(Transit::get(), SIGNAL(SignalSlaveDelay(int)), this, SLOT(SlotSlaveDelay(int)));
+    connect(Transit::get(), SIGNAL(SignalRadioConnectAsk()), this, SLOT(SlotRadioConnectAsk()));
+}
+
+/****************************************************************************
+**
+** Control::SlotCallSetup
+** 功能概述: UI层呼叫信号处理槽
+** 参数说明: CallClass* cc 呼叫信息
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+void Control::SlotCallSetup(CallClass* cc)
+{
+    QString strTmp;
+    Logging::get()->debug("S*****SlotCallSetup*****S");
+    Logging::get()->debug("CallName:");
+    Logging::get()->debug(cc->getCallInfo()->getCallName());
+    Logging::get()->debug("CallCode:");
+    Logging::get()->debug(cc->getCallInfo()->getCallCode());
+    Logging::get()->debug("CallChannel:");
+    Logging::get()->debug(cc->getCallInfo()->getCallChannel());
+    Logging::get()->debug("CallTx:");
+    Logging::get()->debug(cc->getCallInfo()->getCallTx());
+    Logging::get()->debug("CallRx:");
+    Logging::get()->debug(cc->getCallInfo()->getCallRx());
+    Logging::get()->debug("CallType:");
+    Logging::get()->debug(cc->getCallInfo()->getCallType());
+    Logging::get()->debug("IsCall:");
+    strTmp = cc->getIsCall();
+    Logging::get()->debug(strTmp);
+    Logging::get()->debug("E*****SlotCallSetup*****E");
+}
+
+/****************************************************************************
+**
+** Control::SlotConnectingCancel
+** 功能概述: UI层连接取消信号处理槽
+** 参数说明: 
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+void Control::SlotConnectingCancel()
+{
+    Logging::get()->debug("*****SlotConnectingCancel*****");
+}
+
+/****************************************************************************
+**
+** Control::SlotTalkSend
+** 功能概述: UI层通话下发信号处理槽
+** 参数说明: QString strNo 消息ID
+             QString strMsg 消息内容
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+void Control::SlotTalkSend(QString strNo, QString strMsg)
+{
+    Logging::get()->debug("S*****SlotTalkSend*****S");
+    m_strNo = strNo;
+    Logging::get()->debug("strNo:");
+    Logging::get()->debug(strNo);
+    Logging::get()->debug("strMsg:");
+    Logging::get()->debug(strMsg);
+    Logging::get()->debug("E*****SlotTalkSend*****E");
+}
+
+/****************************************************************************
+**
+** Control::SlotInterupt
+** 功能概述: UI层ESC中断信号处理槽
+** 参数说明: 
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+void Control::SlotInterupt()
+{
+    Logging::get()->debug("*****SlotInterupt*****");
+}
+
+/****************************************************************************
+**
+** Control::SlotScan
+** 功能概述: UI层扫描信号处理槽
+** 参数说明: ScanClass* sc 扫描信息
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+void Control::SlotScan(ScanClass* sc)
+{
+    QString strTmp;
+    Logging::get()->debug("ScanGroup:");
+    strTmp = sc->getScanGroup();
+    Logging::get()->debug(strTmp);
+    Logging::get()->debug("IsScan:");
+    strTmp = sc->getIsScan();
+    Logging::get()->debug(strTmp);
+    Logging::get()->debug("DwellTime:");
+    strTmp = sc->getDwellTime();
+    Logging::get()->debug(strTmp);
+    Logging::get()->debug("ScanMode:");
+    strTmp = sc->getScanMode();
+    Logging::get()->debug(strTmp);
+    QList<ChannelInfoClass>* lstTmp = sc->getChannelInfoList();
+    ChannelInfoClass cic;
+
+    for (int i = 0; i < lstTmp->count(); i++)
+    {
+        strTmp = "ChannelInfo ";
+        strTmp.append(i + 1);
+        strTmp.append(":");
+        Logging::get()->debug(strTmp);
+        Logging::get()->debug("Tx:");
+        cic = lstTmp->at(i);
+        Logging::get()->debug(cic.getTx());
+        Logging::get()->debug("Rx:");
+        Logging::get()->debug(cic.getRx());
+    }
+
+    Logging::get()->debug("E*****SlotScan*****E");
+}
+
+/****************************************************************************
+**
+** Control::SlotCheck
+** 功能概述: UI层系统自检信号处理槽
+** 参数说明:
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+void Control::SlotCheck()
+{
+    Logging::get()->debug("*****SlotCheck*****");
+}
+
+/****************************************************************************
+**
+** Control::SlotMarkTrans
+** 功能概述: UI层Mark传递信号处理槽
+** 参数说明:
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+void Control::SlotMarkTrans()
+{
+    Logging::get()->debug("*****SlotMarkTrans*****");
+}
+
+/****************************************************************************
+**
+** Control::SlotSpaceTrans
+** 功能概述: UI层Space传递信号处理槽
+** 参数说明:
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+void Control::SlotSpaceTrans()
+{
+    Logging::get()->debug("*****SlotSpaceTrans*****");
+}
+
+/****************************************************************************
+**
+** Control::SlotDotTrans
+** 功能概述: UI层Dot传递信号处理槽
+** 参数说明:
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+void Control::SlotDotTrans()
+{
+    Logging::get()->debug("*****SlotDotTrans*****");
+}
+
+/****************************************************************************
+**
+** Control::SlotSlaveDelay
+** 功能概述: UI层SlaveDelay信号处理槽
+** 参数说明:
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+void Control::SlotSlaveDelay(int i)
+{
+    QString strTmp;
+    Logging::get()->debug("S*****SlotSlaveDelay*****S");
+    Logging::get()->debug("Delay:");
+    strTmp = QString::number(i);
+    Logging::get()->debug(strTmp);
+    Logging::get()->debug("E*****SlotSlaveDelay*****E");
+}
+
+/****************************************************************************
+**
+** Control::SlotRadioConnectAsk
+** 功能概述: UI层电台连接确认信号处理槽
+** 参数说明:
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+void Control::SlotRadioConnectAsk()
+{
+    Logging::get()->debug("*****SlotRadioConnectAsk*****");
+}
+
+/****************************************************************************
+**
+** Control::KeyDownForTest
+** 功能概述: 快捷键回调函数
+** 参数说明: QString strMdf 组合键
+             int intKc 键值
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+void Control::KeyDownForTest(QString strMdf, int intKc)
+{
+    QString strTmp;
+    CallInfoClass* cic = new CallInfoClass();
+    cic->setCallName("1Peter");
+    cic->setCallCode("020222111");
+    cic->setCallChannel("30202");
+    cic->setCallTx("1020.2");
+    cic->setCallRx("2020.3");
+    cic->setCallType("BFEC");
+    cic->setCallOrReceive("0");
+    CheckDataClass* cdc1 = new CheckDataClass();
+    cdc1->setTerminalCheck(true);
+    cdc1->setReceiveCheck(true);
+    cdc1->setTransmissionCheck(true);
+
+    if (strMdf == "Ctrl")
+    {
+        switch (intKc)
+        {
+        case Qt::Key_M:
+            Transit::get()->EmitSignalTalkSendConfirm(m_strNo, true);
+            break;
+
+        case Qt::Key_R:
+            strTmp = "Hello!";
+            Transit::get()->EmitSignalTalkReceive(strTmp);
+            break;
+
+        case Qt::Key_I:
+            Transit::get()->EmitSignalInteruptConfirm(true);
+            break;
+
+        case Qt::Key_D:
+            Transit::get()->EmitSignalInteruptDSC();
+            break;
+
+        case Qt::Key_O:
+            Transit::get()->EmitSignalInteruptComu();
+            break;
+
+        case Qt::Key_S:
+            cic->setCallType("FEC");
+            Transit::get()->EmitSignalScanData(cic);
+            break;
+
+        case Qt::Key_C:
+            Transit::get()->EmitSignalCheckData(cdc1);
+            break;
+
+        case Qt::Key_N:
+            Transit::get()->EmitSignalShutDown();
+            break;
+
+        case Qt::Key_W:
+            Transit::get()->EmitSignalRadioConnectAnswer(true);
+            break;
+
+        case Qt::Key_V:
+            Transit::get()->EmitSignalDSCfollowComm(cic);
+            break;
+
+        case Qt::Key_K:
+            Transit::get()->EmitSignalMessageEnd();
+            break;
+
+        default:
+            break;
+        }
+    }
+    else if (strMdf == "Alt")
+    {
+        switch (intKc)
+        {
+        case Qt::Key_1:
+            Transit::get()->EmitSignalTurningResult(true);
+            break;
+
+        case Qt::Key_2:
+            Transit::get()->EmitSignalConnectingWait(true);
+            break;
+
+        case Qt::Key_3:
+            Transit::get()->EmitSignalConnectingResult(true);
+            break;
+
+        default:
+            break;
+        }
+    }
+    else if (strMdf == "Ctrl+Alt")
+    {
+        switch (intKc)
+        {
+        case Qt::Key_1:
+            Transit::get()->EmitSignalTurningResult(false);
+            break;
+
+        case Qt::Key_2:
+            Transit::get()->EmitSignalConnectingWait(false);
+            break;
+
+        case Qt::Key_3:
+            Transit::get()->EmitSignalConnectingResult(false);
+            break;
+
+        case Qt::Key_4:
+            Logging::get()->debug("Ctrl+Alt+4");
+            Transit::get()->EmitSignalState("Idle");
+            break;
+
+        case Qt::Key_5:
+            Logging::get()->debug("Ctrl+Alt+5");
+            Transit::get()->EmitSignalState("Scanning");
+            break;
+
+        case Qt::Key_6:
+            Logging::get()->debug("Ctrl+Alt+6");
+            Transit::get()->EmitSignalState("ARQ Connected");
+            break;
+
+        case Qt::Key_7:
+            Logging::get()->debug("Ctrl+Alt+7");
+            Transit::get()->EmitSignalState("Outgoing SFEC");
+            break;
+
+        case Qt::Key_8:
+            Logging::get()->debug("Ctrl+Alt+8");
+            Transit::get()->EmitSignalState("Outgoing BFEC");
+            break;
+
+        case Qt::Key_9:
+            Logging::get()->debug("Ctrl+Alt+9");
+            Transit::get()->EmitSignalState("Incoming FEC");
+            break;
+
+        case Qt::Key_M:
+            Transit::get()->EmitSignalTalkSendConfirm(m_strNo, false);
+            break;
+
+        case Qt::Key_I:
+            Transit::get()->EmitSignalInteruptConfirm(false);
+            break;
+
+        case Qt::Key_W:
+            Transit::get()->EmitSignalRadioConnectAnswer(false);
+            break;
+
+        default:
+            break;
+        }
+    }
+}

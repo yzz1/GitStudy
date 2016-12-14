@@ -1,0 +1,1230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>CallView</class>
+ <widget class="QWidget" name="CallView">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>544</height>
+   </rect>
+  </property>
+  <property name="font">
+   <font>
+    <pointsize>20</pointsize>
+   </font>
+  </property>
+  <property name="focusPolicy">
+   <enum>Qt::NoFocus</enum>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <property name="windowOpacity">
+   <double>1.000000000000000</double>
+  </property>
+  <widget class="TitleWidget" name="CallTitleWidget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>45</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="arqRadio">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>80</y>
+     <width>150</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>20</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+     <kerning>true</kerning>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::StrongFocus</enum>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QRadioButton {
+    border:1.5px solid gray;
+    border-radius:25px;
+    background: transparent;
+    padding:2px 5px;
+	color:rgb(175, 171, 171);
+}
+
+QRadioButton:focus
+{
+   border: none;
+    outline: none;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(48, 60, 76, 255), stop:1 rgba(7, 61, 82, 255));
+    color:white;
+}
+
+QRadioButton::checked{
+   border: none;
+    outline: none;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(48, 60, 76, 255), stop:1 rgba(7, 61, 82, 255));
+}
+
+QRadioButton::indicator {
+width:40px;
+height:40px;
+margin-left: 5px;
+
+}
+
+QRadioButton::indicator::unchecked{
+image: url(:/images/images/Call_Mode_SelNo.png);
+}
+
+QRadioButton::indicator:unchecked:focus {
+image: url(:/images/images/Call_Mode_SelNo.png);
+}
+
+QRadioButton::indicator:hover {
+image: url(:/images/images/Call_Mode_SelNo.png);
+}
+
+QRadioButton::indicator:unchecked:pressed {
+    image: url(:/images/images/Call_Mode_SelNo.png);
+}
+
+QRadioButton::indicator::checked{
+    image: url(:/images/images/Call_Mode_SelYes.png);
+}
+
+QRadioButton::indicator:checked:hover {
+    image: url(:/images/images/Call_Mode_SelYes.png);
+}
+
+QRadioButton::indicator:checked:pressed {
+    image: url(:/images/images/Call_Mode_SelYes.png);
+}
+
+QRadioButton::indicator:checked:focus {
+    image: url(:/images/images/Call_Mode_SelYes.png);
+}
+</string>
+   </property>
+   <property name="text">
+    <string>&amp;ARQ</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>40</width>
+     <height>40</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="sfecRadio">
+   <property name="geometry">
+    <rect>
+     <x>330</x>
+     <y>80</y>
+     <width>150</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>20</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+     <kerning>true</kerning>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QRadioButton {
+    border:1.5px solid gray;
+    border-radius:25px;
+    background: transparent;
+    padding:2px 5px;
+	color:rgb(175, 171, 171);
+}
+
+QRadioButton:focus
+{
+   border: none;
+    outline: none;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(48, 60, 76, 255), stop:1 rgba(7, 61, 82, 255));
+    color:white;
+}
+
+QRadioButton::checked{
+   border: none;
+    outline: none;
+      background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(48, 60, 76, 255), stop:1 rgba(7, 61, 82, 255));
+
+
+}
+
+QRadioButton::indicator {
+width:40px;
+height:40px;
+margin-left: 5px;
+
+}
+
+QRadioButton::indicator::unchecked{
+image: url(:/images/images/Call_Mode_SelNo.png);
+}
+
+QRadioButton::indicator:unchecked:focus {
+image: url(:/images/images/Call_Mode_SelNo.png);
+}
+
+QRadioButton::indicator:hover {
+image: url(:/images/images/Call_Mode_SelNo.png);
+}
+
+QRadioButton::indicator:unchecked:pressed {
+    image: url(:/images/images/Call_Mode_SelNo.png);
+}
+
+QRadioButton::indicator::checked{
+    image: url(:/images/images/Call_Mode_SelYes.png);
+}
+
+QRadioButton::indicator:checked:hover {
+    image: url(:/images/images/Call_Mode_SelYes.png);
+}
+
+QRadioButton::indicator:checked:pressed {
+    image: url(:/images/images/Call_Mode_SelYes.png);
+}
+
+QRadioButton::indicator:checked:focus {
+    image: url(:/images/images/Call_Mode_SelYes.png);
+}
+</string>
+   </property>
+   <property name="text">
+    <string>S&amp;FEC</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>40</width>
+     <height>40</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="bfecRadio">
+   <property name="geometry">
+    <rect>
+     <x>610</x>
+     <y>80</y>
+     <width>150</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>20</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+     <kerning>true</kerning>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QRadioButton {
+    border:1.5px solid gray;
+    border-radius:25px;
+    background: transparent;
+    padding:2px 5px;
+	color:rgb(175, 171, 171);
+}
+
+QRadioButton:focus
+{
+   border: none;
+    outline: none;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(48, 60, 76, 255), stop:1 rgba(7, 61, 82, 255));
+    color:white;
+}
+
+QRadioButton::checked{
+   border: none;
+    outline: none;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(48, 60, 76, 255), stop:1 rgba(7, 61, 82, 255));
+}
+
+QRadioButton::indicator {
+width:40px;
+height:40px;
+margin-left: 5px;
+
+}
+
+QRadioButton::indicator::unchecked{
+image: url(:/images/images/Call_Mode_SelNo.png);
+}
+
+QRadioButton::indicator:unchecked:focus {
+image: url(:/images/images/Call_Mode_SelNo.png);
+}
+
+QRadioButton::indicator:hover {
+image: url(:/images/images/Call_Mode_SelNo.png);
+}
+
+QRadioButton::indicator:unchecked:pressed {
+    image: url(:/images/images/Call_Mode_SelNo.png);
+}
+
+QRadioButton::indicator::checked{
+    image: url(:/images/images/Call_Mode_SelYes.png);
+}
+
+QRadioButton::indicator:checked:hover {
+    image: url(:/images/images/Call_Mode_SelYes.png);
+}
+
+QRadioButton::indicator:checked:pressed {
+    image: url(:/images/images/Call_Mode_SelYes.png);
+}
+
+QRadioButton::indicator:checked:focus {
+    image: url(:/images/images/Call_Mode_SelYes.png);
+}
+</string>
+   </property>
+   <property name="text">
+    <string>&amp;BFEC</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>40</width>
+     <height>40</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="Line" name="line">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>139</y>
+     <width>801</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:transparent;</string>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Plain</enum>
+   </property>
+   <property name="lineWidth">
+    <number>2</number>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="Line" name="line_2">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>400</y>
+     <width>800</width>
+     <height>16</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">background:transparent;</string>
+   </property>
+   <property name="frameShadow">
+    <enum>QFrame::Plain</enum>
+   </property>
+   <property name="lineWidth">
+    <number>2</number>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="okBtn">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>420</y>
+     <width>99</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton:focus{
+    color:white;
+}
+
+</string>
+   </property>
+   <property name="text">
+    <string>&amp;OK</string>
+   </property>
+   <property name="icon">
+    <iconset resource="../../resources/nbdp.qrc">
+     <normaloff>:/images/images/OK.png</normaloff>:/images/images/OK.png</iconset>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="cancelBtn">
+   <property name="geometry">
+    <rect>
+     <x>470</x>
+     <y>420</y>
+     <width>99</width>
+     <height>30</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton:focus{
+    color:white;
+}
+
+</string>
+   </property>
+   <property name="text">
+    <string>Ca&amp;ncel</string>
+   </property>
+   <property name="icon">
+    <iconset resource="../../resources/nbdp.qrc">
+     <normaloff>:/images/cancel</normaloff>:/images/cancel</iconset>
+   </property>
+  </widget>
+  <widget class="QWidget" name="controlWidget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>470</y>
+     <width>800</width>
+     <height>72</height>
+    </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"> background-color:rgb(10,21,31);</string>
+   </property>
+   <widget class="QToolButton" name="homeBtn">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>0</y>
+      <width>141</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QToolButton{
+    border:none;
+    outline: none;
+    color:rgb(86, 74, 74);
+
+     background: transparent;
+	font: 18pt &quot;Ubuntu&quot;;
+
+}
+QToolButton:focus{
+    color:white;
+
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string>&amp;Home</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normalon>:/images/home_normal</normalon>
+      <selectedoff>:/images/home_normal</selectedoff>
+      <selectedon>:/images/home_hover</selectedon>
+     </iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>56</width>
+      <height>42</height>
+     </size>
+    </property>
+    <property name="popupMode">
+     <enum>QToolButton::DelayedPopup</enum>
+    </property>
+    <property name="toolButtonStyle">
+     <enum>Qt::ToolButtonTextBesideIcon</enum>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="receiveBtn">
+    <property name="geometry">
+     <rect>
+      <x>640</x>
+      <y>0</y>
+      <width>141</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QToolButton{
+    border:none;
+    outline: none;
+    color:rgb(86, 74, 74);
+     background: transparent;
+	font: 18pt &quot;Ubuntu&quot;;
+
+}
+QToolButton:focus{
+    color:white;
+
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string>&amp;Receive</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normalon>:/images/images/Call_Bnt_SelNo.png</normalon>
+      <selectedoff>:/images/images/station_gray.png</selectedoff>
+      <selectedon>:/images/images/individual_white.png</selectedon>
+     </iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>40</width>
+      <height>40</height>
+     </size>
+    </property>
+    <property name="popupMode">
+     <enum>QToolButton::DelayedPopup</enum>
+    </property>
+    <property name="toolButtonStyle">
+     <enum>Qt::ToolButtonTextBesideIcon</enum>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="callBtn">
+    <property name="geometry">
+     <rect>
+      <x>450</x>
+      <y>0</y>
+      <width>145</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QToolButton{
+    border:none;
+    outline: none;
+    color:rgb(86, 74, 74);
+     background: transparent;
+	font: 18pt &quot;Ubuntu&quot;;
+
+}
+QToolButton:focus{
+    color:white;
+
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string>&amp;Transmit</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normalon>:/images/images/Call_Bnt_SelYes.png</normalon>
+      <selectedoff>:/images/images/individual_gray.png</selectedoff>
+      <selectedon>:/images/images/individual_white.png</selectedon>
+     </iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>40</width>
+      <height>40</height>
+     </size>
+    </property>
+    <property name="popupMode">
+     <enum>QToolButton::DelayedPopup</enum>
+    </property>
+    <property name="toolButtonStyle">
+     <enum>Qt::ToolButtonTextBesideIcon</enum>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QWidget" name="gridLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>350</x>
+     <y>160</y>
+     <width>441</width>
+     <height>251</height>
+    </rect>
+   </property>
+   <layout class="QGridLayout" name="gridLayout" columnstretch="3,8">
+    <item row="1" column="0">
+     <widget class="QLabel" name="callCodeTitle">
+      <property name="palette">
+       <palette>
+        <active>
+         <colorrole role="WindowText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>8</red>
+            <green>249</green>
+            <blue>14</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Button">
+          <brush brushstyle="SolidPattern">
+           <color alpha="0">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>8</red>
+            <green>249</green>
+            <blue>14</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="ButtonText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>8</red>
+            <green>249</green>
+            <blue>14</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Base">
+          <brush brushstyle="SolidPattern">
+           <color alpha="0">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Window">
+          <brush brushstyle="SolidPattern">
+           <color alpha="0">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </active>
+        <inactive>
+         <colorrole role="WindowText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>8</red>
+            <green>249</green>
+            <blue>14</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Button">
+          <brush brushstyle="SolidPattern">
+           <color alpha="0">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>8</red>
+            <green>249</green>
+            <blue>14</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="ButtonText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>8</red>
+            <green>249</green>
+            <blue>14</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Base">
+          <brush brushstyle="SolidPattern">
+           <color alpha="0">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Window">
+          <brush brushstyle="SolidPattern">
+           <color alpha="0">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </inactive>
+        <disabled>
+         <colorrole role="WindowText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>8</red>
+            <green>249</green>
+            <blue>14</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Button">
+          <brush brushstyle="SolidPattern">
+           <color alpha="0">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Text">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>8</red>
+            <green>249</green>
+            <blue>14</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="ButtonText">
+          <brush brushstyle="SolidPattern">
+           <color alpha="255">
+            <red>8</red>
+            <green>249</green>
+            <blue>14</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Base">
+          <brush brushstyle="SolidPattern">
+           <color alpha="0">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+         <colorrole role="Window">
+          <brush brushstyle="SolidPattern">
+           <color alpha="0">
+            <red>0</red>
+            <green>0</green>
+            <blue>0</blue>
+           </color>
+          </brush>
+         </colorrole>
+        </disabled>
+       </palette>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: transparent;
+color: rgb(8, 249,14);
+font-size :20pt;</string>
+      </property>
+      <property name="text">
+       <string>Callcode</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="0">
+     <widget class="QLabel" name="nameTitle">
+      <property name="styleSheet">
+       <string notr="true">background: transparent;
+color: rgb(8, 249,14);
+font-size :20pt;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+      <property name="pixmap">
+       <pixmap resource="../../resources/nbdp.qrc">:/images/images/Call_Info_Name.png</pixmap>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="0">
+     <widget class="QLabel" name="rxTitle">
+      <property name="styleSheet">
+       <string notr="true">background: transparent;
+color: rgb(8, 249,14);
+font-size :20pt;</string>
+      </property>
+      <property name="text">
+       <string>RX</string>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="0">
+     <widget class="QLabel" name="channelTitle">
+      <property name="font">
+       <font>
+        <pointsize>20</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background: transparent;
+color: rgb(8, 249,14);
+font-size :20pt;</string>
+      </property>
+      <property name="text">
+       <string>Channel</string>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="0">
+     <widget class="QLabel" name="txTitle">
+      <property name="styleSheet">
+       <string notr="true">background: transparent;
+color: rgb(8, 249,14);
+font-size :20pt;</string>
+      </property>
+      <property name="text">
+       <string>TX</string>
+      </property>
+     </widget>
+    </item>
+    <item row="0" column="1">
+     <widget class="QLabel" name="nameLabel">
+      <property name="styleSheet">
+       <string notr="true">background: transparent;
+font-size: 20px;
+color: white;
+font-wight:bold;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="1" column="1">
+     <widget class="QLabel" name="callCodeLabel">
+      <property name="styleSheet">
+       <string notr="true">background: transparent;
+font-size: 20px;
+color: gray;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="1">
+     <widget class="QLabel" name="channelLabel">
+      <property name="styleSheet">
+       <string notr="true">background: transparent;
+font-size: 20px;
+color: gray;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1">
+     <widget class="QLabel" name="rxLabel">
+      <property name="styleSheet">
+       <string notr="true">background: transparent;
+font-size: 20px;
+color: gray;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="1">
+     <widget class="QLabel" name="txLabel">
+      <property name="styleSheet">
+       <string notr="true">background: transparent;
+font-size: 20px;
+color: gray;</string>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
+     </widget>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QRadioButton" name="individualRadio">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>170</y>
+     <width>311</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>20</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+     <kerning>true</kerning>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::StrongFocus</enum>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QRadioButton {
+   border: none;
+    outline: none;
+    background: transparent;
+    padding:2px 5px;
+	color:rgb(175, 171, 171);
+}
+
+QRadioButton:focus
+{
+   border: none;
+    outline: none;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(48, 60, 76, 255), stop:1 rgba(7, 61, 82, 255));
+    color:white;
+}
+
+QRadioButton::checked{
+   border: none;
+    outline: none;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(48, 60, 76, 255), stop:1 rgba(7, 61, 82, 255));
+}
+
+QRadioButton::indicator {
+width:40px;
+height:40px;
+margin-left: 5px;
+
+}
+
+QRadioButton::indicator::unchecked{
+image: url(:/images/images/Call_Individual_SelNo.png);
+}
+
+QRadioButton::indicator:unchecked:focus {
+image: url(:/images/images/Call_Individual_SelNo.png);
+}
+
+QRadioButton::indicator:hover {
+image: url(:/images/images/Call_Individual_SelNo.png);
+}
+
+QRadioButton::indicator:unchecked:pressed {
+    image: url(:/images/images/Call_Individual_SelNo.png);
+}
+
+QRadioButton::indicator::checked{
+    image: url(:/images/images/Call_Individual_SelYes.png);
+}
+
+QRadioButton::indicator:checked:hover {
+    image: url(:/images/images/Call_Individual_SelYes.png);
+}
+
+QRadioButton::indicator:checked:pressed {
+    image: url(:/images/images/Call_Individual_SelYes.png);
+}
+
+QRadioButton::indicator:checked:focus {
+    image: url(:/images/images/Call_Individual_SelYes.png);
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Contacts &amp;Indivual</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>40</width>
+     <height>40</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="stationRadio">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>250</y>
+     <width>311</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>20</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+     <kerning>true</kerning>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::StrongFocus</enum>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QRadioButton {
+   border: none;
+    outline: none;
+    background: transparent;
+    padding:2px 5px;
+	color:rgb(175, 171, 171);
+}
+
+QRadioButton:focus
+{
+   border: none;
+    outline: none;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(48, 60, 76, 255), stop:1 rgba(7, 61, 82, 255));
+    color:white;
+}
+
+QRadioButton::checked{
+   border: none;
+    outline: none;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(48, 60, 76, 255), stop:1 rgba(7, 61, 82, 255));
+}
+
+QRadioButton::indicator {
+width:40px;
+height:40px;
+margin-left: 5px;
+
+}
+
+QRadioButton::indicator::unchecked{
+image: url(:/images/images/Call_Station_SelNo.png);
+}
+
+QRadioButton::indicator:unchecked:focus {
+image: url(:/images/images/Call_Station_SelNo.png);
+}
+
+QRadioButton::indicator:hover {
+image: url(:/images/images/Call_Station_SelNo.png);
+}
+
+QRadioButton::indicator:unchecked:pressed {
+    image: url(:/images/images/Call_Station_SelNo.png);
+}
+
+QRadioButton::indicator::checked{
+    image: url(:/images/images/Call_Station_SelYes.png);
+}
+
+QRadioButton::indicator:checked:hover {
+   image: url(:/images/images/Call_Station_SelYes.png);
+}
+
+QRadioButton::indicator:checked:pressed {
+    image: url(:/images/images/Call_Station_SelYes.png);
+}
+
+QRadioButton::indicator:checked:focus {
+    image: url(:/images/images/Call_Station_SelYes.png);
+}
+</string>
+   </property>
+   <property name="text">
+    <string>Contacts &amp;Station</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>40</width>
+     <height>40</height>
+    </size>
+   </property>
+  </widget>
+  <widget class="QRadioButton" name="manualRadio">
+   <property name="geometry">
+    <rect>
+     <x>10</x>
+     <y>330</y>
+     <width>311</width>
+     <height>50</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <pointsize>20</pointsize>
+     <weight>75</weight>
+     <bold>true</bold>
+     <kerning>true</kerning>
+    </font>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::StrongFocus</enum>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QRadioButton {
+   border: none;
+    outline: none;
+    background: transparent;
+    padding:2px 5px;
+	color:rgb(175, 171, 171);
+}
+
+QRadioButton:focus
+{
+   border: none;
+    outline: none;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(48, 60, 76, 255), stop:1 rgba(7, 61, 82, 255));
+    color:white;
+}
+
+QRadioButton::checked{
+   border: none;
+    outline: none;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(48, 60, 76, 255), stop:1 rgba(7, 61, 82, 255));
+}
+
+QRadioButton::indicator {
+width:40px;
+height:40px;
+margin-left: 5px;
+
+}
+
+QRadioButton::indicator::unchecked{
+image: url(:/images/images/Call_Manual_SelNo.png);
+}
+
+QRadioButton::indicator:unchecked:focus {
+image: url(:/images/images/Call_Manual_SelNo.png);
+}
+
+QRadioButton::indicator:hover {
+image: url(:/images/images/Call_Manual_SelNo.png);
+}
+
+QRadioButton::indicator:unchecked:pressed {
+    image: url(:/images/images/Call_Manual_SelNo.png);
+}
+
+QRadioButton::indicator::checked{
+    image: url(:/images/images/Call_Manual_SelYes.png);
+}
+
+QRadioButton::indicator:checked:hover {
+    image: url(:/images/images/Call_Manual_SelYes.png);
+}
+
+QRadioButton::indicator:checked:pressed {
+    image: url(:/images/images/Call_Manual_SelYes.png);
+}
+
+QRadioButton::indicator:checked:focus {
+    image: url(:/images/images/Call_Manual_SelYes.png);
+}
+</string>
+   </property>
+   <property name="text">
+    <string>&amp;Manual Frequency</string>
+   </property>
+   <property name="iconSize">
+    <size>
+     <width>40</width>
+     <height>40</height>
+    </size>
+   </property>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TitleWidget</class>
+   <extends>QWidget</extends>
+   <header>widgets/titlewidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <tabstops>
+  <tabstop>arqRadio</tabstop>
+  <tabstop>sfecRadio</tabstop>
+  <tabstop>bfecRadio</tabstop>
+  <tabstop>okBtn</tabstop>
+  <tabstop>cancelBtn</tabstop>
+  <tabstop>homeBtn</tabstop>
+  <tabstop>callBtn</tabstop>
+  <tabstop>receiveBtn</tabstop>
+ </tabstops>
+ <resources>
+  <include location="../../resources/nbdp.qrc"/>
+ </resources>
+ <connections/>
+</ui>

@@ -1,0 +1,36 @@
+# 界面宽度
+ScreenWidth=800
+
+# 界面高度
+ScreenHeight=600
+
+# 默认语言
+Lang=en
+
+# 串口路径
+SerialPort=/dev/ttyUSB0
+
+# 波特率
+BaudRate=19200
+
+# 光标是否可见
+CursorVisible=false
+
+# 电台连接结果等待时长（单位：ms）
+ConnectStateResultWaitTime=30000
+
+# 谐调结果等待时长（单位：ms）
+TuneResultWaitTime=40000
+
+# 被呼叫时建链等待时长（单位：ms）
+ConnectingWaitTime=1200000
+
+# 建链结果等待时长（单位：ms）
+ConnectResultWaitTime=72000
+
+# 同一Callcode通话等待间隔（单位：ms）
+CallInterval=3000
+
+# 窗口关闭等待时长（单位：ms） 超时则认为无人接收
+DialogCloseWaitTime=20000
+

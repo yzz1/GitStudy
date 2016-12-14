@@ -1,0 +1,14 @@
+#ifndef MAINWINDOW_GLOBAL_H
+#define MAINWINDOW_GLOBAL_H
+
+
+#include <QtCore/qglobal.h>
+
+#if defined(TRANSIT_LIBRARY)
+#  define MAINSENDSHARED_EXPORT Q_DECL_EXPORT
+#else
+#  define MAINSENDSHARED_EXPORT Q_DECL_IMPORT
+#endif
+
+
+#endif // MAINWINDOW_GLOBAL_H

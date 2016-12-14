@@ -1,0 +1,225 @@
+NbdpView {
+    qproperty-backPix: ":/images/contacts_background";
+
+}
+
+ContactsStyle {
+    qproperty-selectedPixmap: ":/images/station_name_green";
+    qproperty-noSelectedPixmap: ":/images/station_name_gray";
+    qproperty-selectedFontSize: 18;
+    qproperty-pixmapColummIndex:1;
+    qproperty-selectedFontColor:rgb(255,255,255);
+}
+
+MessagesStyle {
+    qproperty-selectedPixmap: ":/images/message_mail_SelYes";
+    qproperty-noSelectedPixmap: ":/images/message_mail_SelNo";
+    qproperty-selectedFontSize: 18;
+    qproperty-pixmapColummIndex:2;
+    qproperty-selectedFontColor:rgb(255,255,255);
+    qproperty-dateFormatColIndex:12;
+    qproperty-dateFormat:"MM/dd/yyyy hh:mm";
+    qproperty-checkNoPixmap: ":/images/message_check_no";
+    qproperty-checkYesPixmap: ":/images/message_check_Yes";
+    qproperty-checkSelYesPixmap: ":/images/message_checkBox_SelYes";
+    qproperty-checkSelNoPixmap: ":/images/message_checkBox_SelNo";
+    qproperty-msContentBgColor:rgb(22, 39, 46);
+    qproperty-msSelectedBgColor:rgb(160,160,180);
+    qproperty-readedSelNoPixmap:":/images/Message_readed_SelNo";
+    qproperty-readedSelYesPixmap:":/images/Message_readed_SelYes";
+}
+
+CommuMessagesStyle
+{
+    qproperty-selectedPixmap: ":/images/Call_SendFalse_ICO";
+    qproperty-selectedFontSize: 18;
+    qproperty-pixmapColummIndex:2;
+    qproperty-selectedFontColor:rgb(255,255,255);
+    qproperty-msContentBgColor:rgb(22, 39, 46);
+    qproperty-msSelectedBgColor:rgb(160,160,180);
+}
+
+ContactsIndStyle {
+    qproperty-selectedPixmap: ":/images/images/name_green";
+    qproperty-noSelectedPixmap: ":/images/images/name_gray";
+    qproperty-selectedFontSize: 18;
+    qproperty-pixmapColummIndex:1;
+    qproperty-selectedFontColor:rgb(255,255,255);
+}
+
+ScanGroupStyle
+{
+    qproperty-selectedPixmap: ":/images/images/Scan_Group_SelYes.png";
+    qproperty-noSelectedPixmap: ":/images/images/Scan_Group_SelNo.png";
+    qproperty-selectedFontSize: 18;
+    qproperty-pixmapColummIndex:1;
+    qproperty-selectedFontColor:rgb(255,255,255);
+}
+
+CallCommunicationStyle
+{
+    qproperty-selectedPixmap: ":/images/manager_Macro_Btn_SelYes";
+    qproperty-noSelectedPixmap: ":/images/manager_Macro_Btn_SelNo";
+    qproperty-selectedFontSize: 18;
+    qproperty-pixmapColummIndex:1;
+    qproperty-selectedFontColor:rgb(255,255,255);
+}
+
+CallPhraseBookStyle
+{
+    qproperty-selectedPixmap: ":/images/manager_PhraseBook_Btn_SelYes";
+    qproperty-noSelectedPixmap: ":/images/manager_PhraseBook_Btn_SelNo";
+    qproperty-selectedFontSize: 18;
+    qproperty-pixmapColummIndex:1;
+    qproperty-selectedFontColor:rgb(255,255,255);
+}
+
+CallFileStyle
+{
+    qproperty-selectedPixmap: ":/images/manager_File_Btn_SelYes";
+    qproperty-noSelectedPixmap: ":/images/manager_File_Btn_SelNo";
+    qproperty-selectedFontSize: 18;
+    qproperty-pixmapColummIndex:1;
+    qproperty-selectedFontColor:rgb(255,255,255);
+}
+
+ManagerFileStyle {
+    qproperty-selectedPixmap: ":/images/manager_File_Ioc_SelYes";
+    qproperty-noSelectedPixmap: ":/images/manager_File_Ioc_SelNo";
+    qproperty-selectedFontSize: 18;
+    qproperty-pixmapColummIndex:1;
+    qproperty-selectedFontColor:rgb(255,255,255);
+}
+
+ManagerStyle {
+    qproperty-selectedPixmap: ":/images/manager_File_Ioc_SelYes";
+    qproperty-noSelectedPixmap: ":/images/manager_File_Ioc_SelNo";
+    qproperty-selectedFontSize: 18;
+    qproperty-pixmapColummIndex:1;
+    qproperty-selectedFontColor:rgb(255,255,255);
+    qproperty-noColIndex:2;
+}
+
+
+ControlWidget {
+    background-color:rgb(10,21,31);
+}
+
+QPushButton#okBtn,#okBtn_2,#cancelBtn{
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(48, 60, 76, 255), stop:1 rgba(7, 61, 82, 255));
+    border: none;
+    border-radius:10px;
+    min-width:115px;
+    min-height:40px;
+    max-width:115px;
+    max-height:40px;
+    icon-size: 40px;
+    font-size: 16pt;
+    font-weight: bold;
+    color:rgb(86, 74, 74);
+}
+
+QPushButton:hover{
+    border:none;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(48, 60, 76, 255), stop:1 rgba(7, 61, 82, 255));
+
+}
+
+QPushButton:focus{
+    border:none;
+    outline: none;
+    color:white;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(48, 60, 76, 255), stop:1 rgba(7, 61, 82, 255));
+
+}
+
+QPushButton:pressed{
+    border:none;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(48, 60, 76, 255), stop:1 rgba(7, 61, 82, 255));
+}
+
+Button{
+     border:none;
+     background: transparent;
+     font-size: 20px;
+     color: gray;
+     font-weight: bold;
+     qproperty-flat: true;
+     icon-size:150px;
+}
+
+Button:pressed{
+}
+
+Button:focus{
+    color:white;
+}
+
+QMessageBox {
+    background: transparent;
+    border-image:url(:/images/background);
+    font:  bold 15pt ;
+    height: 500px;
+    width: 400px;
+ }
+
+IocMessage
+{
+    background: transparent;
+    border-image:url(:/images/background);
+    font:  bold 15pt ;
+    height: 500px;
+    width: 400px;
+ }
+
+QHeaderView {
+    color: gray;
+    font: bold 20pt;
+    background-color: transparent;
+    border: none;
+}
+
+QHeaderView::section {
+    color: white;
+    background-color: transparent;
+    border: none;
+}
+
+
+MessageBox {
+    background-color:  rgb(66, 87, 102);
+    margin: 0px;
+}
+
+MessageBox QLabel {
+    font:  bold 20px ;
+    color: white;
+
+}
+
+QFrame#line,#line_2{
+    border-width: 1px;
+    border-top-style: none;
+    border-right-style: none;
+    border-bottom-style: solid;
+    border-left-style: none;
+    border-color: gray;
+}
+
+QLineEdit
+{
+    background-color: rgba(66, 87, 102, 0%);
+    border:1px solid gray;
+}
+
+QLineEdit:focus
+{
+    background-color: rgba(66, 87, 102, 30%);
+    border:none;
+}
+
+TitleWidget  QLabel
+{
+    font:  bold 36px ;
+    color: white;
+}

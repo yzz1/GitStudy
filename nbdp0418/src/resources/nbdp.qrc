@@ -1,0 +1,150 @@
+<RCC>
+    <qresource prefix="/images">
+        <file alias="background">images/background.png</file>
+        <file alias="home_hover">images/home_hover.png</file>
+        <file alias="home_normal">images/home_normal.png</file>
+        <file alias="cancel">images/cancel.png</file>
+        <file alias="error">images/error.png</file>
+        <file alias="inro">images/info.png</file>
+        <file alias="question">images/question.png</file>
+        <file>images/shadow.png</file>
+        <file alias="Contacts_800_459">images/Contacts_800_459.png</file>
+        <file alias="optionLeft">images/option.png</file>
+        <file alias="Arrow_down_gray">images/Arrow_down_gray.png</file>
+        <file alias="Arrow_down_white">images/Arrow_down_white.png</file>
+        <file alias="Arrow_up_gray">images/Arrow_up_gray.png</file>
+        <file alias="Arrow_up_white">images/Arrow_up_white.png</file>
+        <file>images/individual_gray.png</file>
+        <file>images/individual_white.png</file>
+        <file>images/name_gray.png</file>
+        <file>images/name_green.png</file>
+        <file>images/OK.png</file>
+        <file>images/station_gray.png</file>
+        <file alias="station_name_gray">images/station_name_gray.png</file>
+        <file alias="station_name_green">images/station_name_green.png</file>
+        <file>images/station_white.png</file>
+        <file alias="Ellipse_144_61">images/Ellipse_144_61.png</file>
+        <file alias="contacts_background">images/contacts_background.png</file>
+        <file alias="contactsBnt_745_37">images/contactsBnt_745_37.png</file>
+        <file alias="optionSubMenu_68_120">images/optionSubMenu_68_120.png</file>
+        <file alias="menu_contacts_hover">images/menu_contacts_hover.png</file>
+        <file alias="menu_contacts_normal">images/menu_contacts_normal.png</file>
+        <file alias="menu_manange_hover">images/menu_manange_hover.png</file>
+        <file alias="menu_manange_normal">images/menu_manange_normal.png</file>
+        <file alias="menu_message_hover">images/menu_message_hover.png</file>
+        <file alias="menu_message_normal">images/menu_message_normal.png</file>
+        <file alias="menu_scan_hover">images/menu_scan_hover.png</file>
+        <file alias="menu_scan_normal">images/menu_scan_normal.png</file>
+        <file alias="menu_system_hover">images/menu_system_hover.png</file>
+        <file alias="menu_system_normal">images/menu_system_normal.png</file>
+        <file alias="menu_call_normal">images/menu_call_normal.png</file>
+        <file alias="menu_call_hover">images/menu_call_hover.png</file>
+        <file alias="status_message_no">images/status_message_no.png</file>
+        <file alias="status_message_yes">images/status_message_yes.png</file>
+        <file alias="message_Selected.png">images/message_Selected.png</file>
+        <file alias="message_background_800_544.png">images/message_background_800_544.png</file>
+        <file>images/message_outBox_SelYes.png</file>
+        <file>images/message_outBox_SelNo.png</file>
+        <file alias="message_mail_SelYes">images/message_mail_SelYes.png</file>
+        <file alias="message_mail_SelNo">images/message_mail_SelNo.png</file>
+        <file>images/message_inBox_SelYes.png</file>
+        <file>images/message_inBox_SelNo.png</file>
+        <file>images/message_content_SelYes.png</file>
+        <file alias="message_check_no">images/message_check_no.png</file>
+        <file alias="message_checkBox_SelYes">images/message_checkBox_SelYes.png</file>
+        <file alias="message_checkBox_SelNo">images/message_checkBox_SelNo.png</file>
+        <file>images/message_call_pepole_84_96.png</file>
+        <file alias="message_check_Yes">images/message_check_Yes.png</file>
+        <file alias="manager_PhraseBook_Btn_SelYes">images/manager_PhraseBook_Btn_SelYes.png</file>
+        <file alias="manager_PhraseBook_Btn_SelNo">images/manager_PhraseBook_Btn_SelNo.png</file>
+        <file alias="manager_Macro_Btn_SelYes">images/manager_Macro_Btn_SelYes.png</file>
+        <file alias="manager_Macro_Btn_SelNo">images/manager_Macro_Btn_SelNo.png</file>
+        <file alias="manager_File_Ioc_SelYes">images/manager_File_Ioc_SelYes.png</file>
+        <file alias="manager_File_Ioc_SelNo">images/manager_File_Ioc_SelNo.png</file>
+        <file alias="manager_File_dateTimeEllipse">images/manager_File_dateTimeEllipse.png</file>
+        <file alias="manager_File_Btn_SelYes">images/manager_File_Btn_SelYes.png</file>
+        <file alias="manager_File_Btn_SelNo">images/manager_File_Btn_SelNo.png</file>
+        <file alias="System_Volume_SelYes">images/System_Volume_SelYes.png</file>
+        <file alias="System_Volume_SelNo">images/System_Volume_SelNo.png</file>
+        <file alias="System_Test_Check_SelYes">images/System_Test_Check_SelYes.png</file>
+        <file alias="System_Test_Check_SelNo">images/System_Test_Check_SelNo.png</file>
+        <file alias="System_TestBtn_SelYes">images/System_TestBtn_SelYes.png</file>
+        <file alias="System_TestBtn_SelNo">images/System_TestBtn_SelNo.png</file>
+        <file alias="System_SetBtn_SelYes">images/System_SetBtn_SelYes.png</file>
+        <file alias="System_SetBtn_SelNo">images/System_SetBtn_SelNo.png</file>
+        <file alias="System_Print_SelYes">images/System_Print_SelYes.png</file>
+        <file alias="System_Print_SelNo">images/System_Print_SelNo.png</file>
+        <file alias="System_Lang_SelYes">images/System_Lang_SelYes.png</file>
+        <file alias="System_Lang_SelNo">images/System_Lang_SelNo.png</file>
+        <file alias="System_Identification_SelYes">images/System_Identification_SelYes.png</file>
+        <file alias="System_Identification_SelNo.png">images/System_Identification_SelNo.png</file>
+        <file alias="System_Delay_SelYes">images/System_Delay_SelYes.png</file>
+        <file alias="System_Delay_SelNo">images/System_Delay_SelNo.png</file>
+        <file alias="System_dateTime_SelYes">images/System_dateTime_SelYes.png</file>
+        <file alias="System_dateTime_SelNo">images/System_dateTime_SelNo.png</file>
+        <file alias="System_Brightness_SelYes">images/System_Brightness_SelYes.png</file>
+        <file alias="System_Brightness_SelNo">images/System_Brightness_SelNo.png</file>
+        <file alias="System_Arrow_Right">images/System_Arrow_Right.png</file>
+        <file alias="System_Arrow_Left">images/System_Arrow_Left.png</file>
+        <file alias="System_Arrow_Down">images/System_Arrow_Down.png</file>
+        <file alias="System_AboutBtn_SelYes">images/System_AboutBtn_SelYes.png</file>
+        <file alias="System_AboutBtn_SelNo">images/System_AboutBtn_SelNo.png</file>
+        <file>images/Call_Waiting_signs.png</file>
+        <file>images/Call_Station_SelYes.png</file>
+        <file>images/Call_Station_SelNo.png</file>
+        <file>images/Call_Mode_SelYes.png</file>
+        <file>images/Call_Mode_SelNo.png</file>
+        <file>images/Call_Manual_SelYes.png</file>
+        <file>images/Call_Manual_SelNo.png</file>
+        <file>images/Call_Info_Name.png</file>
+        <file>images/Call_Individual_SelYes.png</file>
+        <file>images/Call_Individual_SelNo.png</file>
+        <file>images/Call_exclamatory_mark.png</file>
+        <file>images/Call_Ellipse.png</file>
+        <file>images/Call_Bnt_SelYes.png</file>
+        <file>images/Call_Bnt_SelNo.png</file>
+        <file>images/Signal_Arrow.png</file>
+        <file alias="Message_readed_SelYes">images/Message_readed_SelYes.png</file>
+        <file alias="Message_readed_SelNo">images/Message_readed_SelNo.png</file>
+        <file alias="Call_Info_Station">images/Call_Info_Station.png</file>
+        <file alias="Call_OS_ICO">images/Call_OS_ICO.png</file>
+        <file alias="Call_SendFalse_ICO">images/Call_SendFalse_ICO.png</file>
+        <file alias="Call_Option_ico">images/Call_Option_ico.png</file>
+        <file alias="Call_Wait_flash">images/Call_Wait_flash.gif</file>
+        <file>images/Scan_Group_SelYes.png</file>
+        <file>images/Scan_ICO_SelYes.png</file>
+        <file>images/Scan_Arrow_Up_SelNo.png</file>
+        <file>images/Scan_Group_SelNo.png</file>
+        <file>images/Scan_Arrow_Down_SelNo.png</file>
+        <file>images/Scan_Arrow_Down_SelYes.png</file>
+        <file>images/Scan_Arrow_Up_SelYes.png</file>
+        <file>images/null.png</file>
+        <file>images/Status_Connected.png</file>
+        <file>images/Status_Idle.png</file>
+        <file>images/Status_IncomingFEC.png</file>
+        <file>images/Status_OutgoingBFEC.png</file>
+        <file>images/Status_OutgoingFEC.png</file>
+        <file>images/Status_Scanning.png</file>
+        <file>images/Receive_Bnt_SelNo.png</file>
+        <file>images/Receive_Bnt_SelYes.png</file>
+        <file>images/Call_Info_Name_gray.png</file>
+        <file>images/Call_Info_Station_gray.png</file>
+    </qresource>
+    <qresource prefix="/qss">
+        <file alias="style">qss/style.qss</file>
+    </qresource>
+    <qresource prefix="/db">
+        <file>db/nbdp.db</file>
+    </qresource>
+    <qresource prefix="/config">
+        <file>config/application.properties</file>
+        <file>config/db.properties</file>
+        <file>config/log4qt.properties</file>
+    </qresource>
+    <qresource prefix="/translations">
+        <file>translations/nbdp_en.ts</file>
+        <file>translations/nbdp_zh_CN.ts</file>
+        <file>translations/nbdp_zh.ts</file>
+        <file>translations/nbdp_ja.ts</file>
+    </qresource>
+</RCC>

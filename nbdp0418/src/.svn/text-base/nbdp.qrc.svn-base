@@ -1,0 +1,37 @@
+<RCC>
+    <qresource prefix="/">
+        <file>resources/images/background.png</file>
+        <file>resources/images/call.png</file>
+        <file>resources/images/call_grey.png</file>
+        <file>resources/images/call_hover.png</file>
+        <file>resources/images/call_normal.png</file>
+        <file>resources/images/call_pressed.png</file>
+        <file>resources/images/contacts.png</file>
+        <file>resources/images/contacts_grey.png</file>
+        <file>resources/images/contacts_hover.png</file>
+        <file>resources/images/contacts_normal.png</file>
+        <file>resources/images/contacts_pressed.png</file>
+        <file>resources/images/mail.png</file>
+        <file>resources/images/manage.png</file>
+        <file>resources/images/manage_grey.png</file>
+        <file>resources/images/manage_hover.png</file>
+        <file>resources/images/manage_normal.png</file>
+        <file>resources/images/manage_pressed.png</file>
+        <file>resources/images/messages.png</file>
+        <file>resources/images/messages_grey.png</file>
+        <file>resources/images/messages_hover.png</file>
+        <file>resources/images/messages_normal.png</file>
+        <file>resources/images/messages_pressed.png</file>
+        <file>resources/images/scan.png</file>
+        <file>resources/images/scan_grey.png</file>
+        <file>resources/images/scan_hover.png</file>
+        <file>resources/images/scan_normal.png</file>
+        <file>resources/images/scan_pressed.png</file>
+        <file>resources/images/signal.png</file>
+        <file>resources/images/system.png</file>
+        <file>resources/images/system_grey.png</file>
+        <file>resources/images/system_hover.png</file>
+        <file>resources/images/system_normal.png</file>
+        <file>resources/images/system_pressed.png</file>
+    </qresource>
+</RCC>

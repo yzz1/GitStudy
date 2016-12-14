@@ -1,0 +1,514 @@
+#include "nbdpview.h"
+#include <QMessageBox>
+#include <QShortcut>
+#include <QWidgetList>
+#include "views/common/constants.h"
+#include "core/utils/configutils.h"
+#include "widgets/iocmessage.h"
+#include <QLibrary>
+#include <QDebug>
+#include <QTimer>
+#include "logging.h"
+/****************************************************************************
+**
+** 函数名称：NbdpView::NbdpView
+** 功能概述: 初始化
+** 参数说明：
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+NbdpView::NbdpView(QWidget* parent): BaseView(parent)
+{
+    Logging::get()->info("NbdpView::NbdpView");
+    QCursor::setPos(30, 30);
+    // this->installEventFilter(this);
+    m_stackWidget = new QStackedWidget(this);
+    m_stackWidget->setGeometry(rect());
+    m_stackWidget->lower();
+    m_mainLayout = new QVBoxLayout(this);
+    setFixedSize(ConfigUtils::getScreenWidth(), ConfigUtils::getScreenHeight());
+    m_statusWidget = new StatusWidget(this);
+    QPalette plt;
+    plt.setBrush(QPalette::Window, QBrush(QColor(0, 4, 14)));
+    m_statusWidget->setPalette(plt);
+    m_statusWidget->setAutoFillBackground(true);
+    m_mainLayout->addWidget(m_statusWidget, Qt::AlignTop);
+    m_homeWidget = new HomeWidget;
+    m_homeWidget->setObjectName(HOME_VIEW_NAME);
+    m_callWidget = new CallView;
+    m_callWidget->setObjectName(CALL_VIEW_NAME);
+    m_contactsWidget = new ContactsView();
+    m_contactsWidget->setObjectName(CONTACTS_STATION_VIEW_NAME);
+    m_individualEditView = new IndividualEditView;
+    m_individualEditView->setObjectName(CONTACTS_INDIVIDUAL_EDIT_NAME);
+    m_stationEditView = new StationEditView;
+    m_stationEditView->setObjectName(CONTACTS_STATION_EDIT_NAME);
+    m_contactsindview = new ContactsIndView();
+    m_contactsindview->setObjectName(CONTACTS_INDIVIDUAL_VIEW);
+    m_messagesListView = new MessagesListView();
+    m_messagesListView->setObjectName(Constants::MESSAEGS_LIST_VIEW_NAME);
+    m_messagesShowView = new MessagesShowView();
+    m_messagesShowView->setObjectName(Constants::MESSAEGS_SHOW_VIEW_NAME);
+    m_managerFile = new ManagerFile();
+    m_managerFile->setObjectName(Constants::MANAGER_FILE);
+    m_managerFileEditView = new ManagerFileEditView();
+    m_managerFileEditView->setObjectName(Constants::MANAGER_FILE_EDIT_VIEW);
+    m_managerMacro = new ManagerMacro();
+    m_managerMacro->setObjectName(Constants::MANAGER_MACRO);
+    m_managerPhrasebook = new ManagerPhrasebook();
+    m_managerPhrasebook->setObjectName(Constants::MANAGER_PHRASEBOOK);
+    m_individualSelectView = new IndividualSelectView();
+    m_individualSelectView->setObjectName(INDIVIDUAL_SELECT_VIEW);
+    m_stationSelectView = new StationSelectView();
+    m_stationSelectView->setObjectName(STATION_SELECT_VIEW);
+    m_systemSetting = new SystemSetting();
+    m_systemSetting->setObjectName(Constants::SYSTEM_SETTING_VIEW);
+    m_identification = new IdentificationSetting();
+    m_identification->setObjectName(Constants::SYSTEM_IDENTIFICATION_SETTING_VIEW);
+    m_systemtest = new SystemTest();
+    m_systemtest->setObjectName(Constants::SYSTEM_TEST_VIEW);
+    m_systemabout  = new SystemAbout();
+    m_systemabout->setObjectName(Constants::SYSTEM_ABOUT_VIEW);
+    m_manualFrequencyView = new ManualFrequencyView();
+    m_manualFrequencyView->setObjectName(MANUAL_FREQUENCY_VIEW);
+    m_frequencyView = new FrequencyView();
+    m_frequencyView->setObjectName(FREQUENCY_VIEW);
+    m_callCommunication = new   CallCommunication();
+    m_callCommunication->setObjectName(CALL_COMMUNICATION_VIEW);
+    m_scangroupview = new ScanGroupView();
+    m_scangroupview->setObjectName(SCAN_GROUP_VIEW);
+    m_scangroupeditview = new ScanGroupEditView();
+    m_scangroupeditview->setObjectName(SCAN_GROUP_EDIT_VIEW);
+    m_scanfrequencyview = new ScanFrequencyView();
+    m_scanfrequencyview->setObjectName(SCAN_FREQUENCY_VIEW);
+    m_viewManager.addView(m_homeWidget);
+    m_viewManager.addView(m_callWidget);
+    m_viewManager.addView(m_contactsindview);
+    m_viewManager.addView(m_individualEditView);
+    m_viewManager.addView(m_stationEditView);
+    m_viewManager.addView(m_contactsWidget);
+    m_viewManager.addView(m_messagesListView);
+    m_viewManager.addView(m_messagesShowView);
+    m_viewManager.addView(m_managerFile);
+    m_viewManager.addView(m_managerFileEditView);
+    m_viewManager.addView(m_managerMacro);
+    m_viewManager.addView(m_managerPhrasebook);
+    m_viewManager.addView(m_individualSelectView);
+    m_viewManager.addView(m_stationSelectView);
+    m_viewManager.addView(m_systemSetting);
+    m_viewManager.addView(m_systemtest);
+    m_viewManager.addView(m_systemabout);
+    m_viewManager.addView(m_identification);
+    m_viewManager.addView(m_manualFrequencyView);
+    m_viewManager.addView(m_frequencyView);
+    m_viewManager.addView(m_callCommunication);
+    m_viewManager.addView(m_scangroupview);
+    m_viewManager.addView(m_scangroupeditview);
+    m_viewManager.addView(m_scanfrequencyview);
+    QWidgetList views = m_viewManager.allViews();
+    foreach(QWidget * widget, views)
+    {
+        m_stackWidget->addWidget(widget);
+        connect(widget, SIGNAL(afterPageSignal(QString , QString, QMap<QString, QString>)), this, SLOT(afterPageslot(QString ,
+                QString, QMap<QString, QString>)));
+        connect(this, SIGNAL(afterPageSignal(QString , QString, QMap<QString, QString>)), widget, SLOT(frontPageSlot(QString ,
+                QString, QMap<QString, QString>)));
+    }
+    m_mainLayout->addWidget(m_stackWidget);
+    m_mainLayout->setContentsMargins(0, 0, 0, 0);
+    connect(m_homeWidget, SIGNAL(buttonClicked(int)), this, SLOT(forward(int)));
+    Control::get();
+    Transit::get()->EmitSignalRadioConnectAsk();
+    QTimer* timer1 = new QTimer(this);
+    timer1->start(ConfigUtils::getConnectStateResultWaitTime());
+    timer1->setSingleShot(true);
+    connect(timer1, SIGNAL(timeout()), this, SLOT(SlotTimeout()));
+    connect(Transit::get(), SIGNAL(SignalRadioConnectAnswer(bool)), this, SLOT(SlotRadioConnectAnswer(bool)));
+    connect(Transit::get(), SIGNAL(SignalTurningResult(bool)), m_callCommunication, SLOT(SlotTurningResult(bool)));
+    connect(Transit::get(), SIGNAL(SignalConnectingWait(bool)), m_callCommunication, SLOT(SlotConnectingWait(bool)));
+    connect(Transit::get(), SIGNAL(SignalConnectingResult(bool)), m_callCommunication, SLOT(SlotConnectingResult(bool)));
+    connect(Transit::get(), SIGNAL(SignalTalkSendConfirm(QString, bool)), m_callCommunication,
+            SLOT(SlotTalkSendConfirm(QString, bool)));
+    connect(Transit::get(), SIGNAL(SignalTalkReceive(QString)), m_callCommunication, SLOT(SlotTalkReceive(QString)));
+    connect(Transit::get(), SIGNAL(SignalInteruptConfirm(bool)), m_callCommunication, SLOT(SlotInteruptConfirm(bool)));
+    connect(Transit::get(), SIGNAL(SignalInteruptDSC()), m_callCommunication, SLOT(SlotInteruptDSC()));
+    connect(Transit::get(), SIGNAL(SignalInteruptComu()), m_callCommunication, SLOT(SlotInteruptComu()));
+    connect(Transit::get(), SIGNAL(SignalScanData(CallInfoClass*)), m_scanfrequencyview,
+            SLOT(SlotScanData(CallInfoClass*)));
+    connect(Transit::get(), SIGNAL(SignalCheckData(CheckDataClass*)), this, SLOT(SlotCheckData(CheckDataClass*)));
+    connect(Transit::get(), SIGNAL(SignalShutDown()), this, SLOT(SlotShutDown()));
+    connect(Transit::get(), SIGNAL(SignalMessageEnd()), m_callCommunication, SLOT(SlotMessageEnd()));
+    connect(Transit::get(), SIGNAL(SignalDSCfollowComm(CallInfoClass*)), this, SLOT(SlotDSCfollowComm(CallInfoClass*)));
+    connect(m_systemSetting, SIGNAL(realTimePrinting(QString)), this, SIGNAL(realTimePrinting(QString)));
+    connect(this, SIGNAL(realTimePrinting(QString)), m_callCommunication, SLOT(SlotRealTimePrinting(QString)));
+    connect(m_identification, SIGNAL(setMMSI(QString)), this, SIGNAL(setMMSI(QString)));
+    connect(this, SIGNAL(setMMSI(QString)), m_statusWidget, SLOT(SlotSetMMSI(QString)));
+    connect(Transit::get(), SIGNAL(SignalState(QString)), m_statusWidget, SLOT(SlotState(QString)));
+    connect(m_callCommunication, SIGNAL(hasUnreadMessage(bool)), m_statusWidget, SLOT(updateMailIcon(bool)));
+    connect(m_messagesListView, SIGNAL(hasUnreadMessage(bool)), m_statusWidget, SLOT(updateMailIcon(bool)));
+}
+
+/****************************************************************************
+**
+** 函数名称：NbdpView::paintEvent
+** 功能概述: 绘图背景处理
+** 参数说明：
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+void NbdpView::paintEvent(QPaintEvent* event)
+{
+    Logging::get()->info("NbdpView::paintEvent");
+    // First, we pass the paint event to parent widget to draw window shadow.
+    // Then, we do our specific painting stuff.
+    BaseView::paintEvent(event);
+    // draw the background using the specified image.
+    QPainter painter(this);
+    painter.setPen(Qt::NoPen);
+    painter.setBrush(Qt::white);
+    
+    if (!m_backgroundPix.isEmpty() && m_backgroundPix != "default")
+    {
+        painter.drawPixmap(0, 0, width(), height(), QPixmap(m_backgroundPix));
+    }
+}
+/****************************************************************************
+**
+** 函数名称：NbdpView::setBackPix
+** 功能概述: 设置背景
+** 参数说明： 背景图片地址
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+void NbdpView::setBackPix(const QString& backPix)
+{
+    Logging::get()->info("NbdpView::setBackPix");
+    m_backgroundPix = backPix;
+    update();
+}
+/****************************************************************************
+**
+** 函数名称：NbdpView::～NbdpView
+** 功能概述: 析构函数
+** 参数说明：
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+NbdpView::~NbdpView()
+{
+    Logging::get()->info("NbdpView::~NbdpView");
+}
+/****************************************************************************
+**
+** 函数名称：NbdpView::forward
+** 功能概述: 各界面跳转处理
+** 参数说明： 界面编号
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+void NbdpView::forward(int index)
+{
+    Logging::get()->info("NbdpView::forward");
+    QWidget* fowordViewWidget;
+    QMap<QString, QString>paraMap ;
+    QString thisID = HOME_VIEW_NAME;
+    QString  fowordID;
+    
+    switch (index)
+    {
+    case 0 :
+        fowordViewWidget = m_viewManager.getViewByName(CALL_VIEW_NAME);
+        fowordID = CALL_VIEW_NAME;
+        break;
+        
+    case 1 :
+        fowordViewWidget = m_viewManager.getViewByName(CONTACTS_STATION_VIEW_NAME);
+        fowordID = CONTACTS_STATION_VIEW_NAME;
+        break;
+        
+    case 2 :
+        fowordViewWidget = m_viewManager.getViewByName(Constants::MESSAEGS_LIST_VIEW_NAME);
+        fowordID = Constants::MESSAEGS_LIST_VIEW_NAME;
+        break;
+        
+    case 3 :
+        fowordViewWidget = m_viewManager.getViewByName(SCAN_GROUP_VIEW);
+        fowordID = SCAN_GROUP_VIEW;
+        break;
+        
+    case 4 :
+        fowordViewWidget = m_viewManager.getViewByName(Constants::MANAGER_FILE);
+        fowordID = Constants::MANAGER_FILE;
+        break;
+        
+    case 5 :
+        fowordViewWidget = m_viewManager.getViewByName(Constants::SYSTEM_SETTING_VIEW);
+        fowordID = Constants::SYSTEM_SETTING_VIEW;
+        break;
+    }
+    
+    m_stackWidget->setCurrentWidget(fowordViewWidget);
+    emit afterPageSignal(thisID, fowordID, paraMap);
+}
+/****************************************************************************
+**
+** 函数名称：NbdpView::focusNextPrevChild
+** 功能概述:
+** 参数说明：
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+bool NbdpView::focusNextPrevChild(bool next)
+{
+    Logging::get()->info("NbdpView::focusNextPrevChild");
+    return false;
+}
+/****************************************************************************
+**
+** 函数名称：NbdpView::focusNextPrevChild
+** 功能概述: 各界面跳转槽函数
+** 参数说明： thisID：起始页面， fowordID：目标页面， paraMap：传递参数
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+void NbdpView:: afterPageslot(QString thisID, QString fowordID, QMap<QString, QString>paraMap)
+{
+    Logging::get()->info("NbdpView::afterPageslot");
+    QWidget* fowordViewWidget;
+    fowordViewWidget = m_viewManager.getViewByName(fowordID);
+    m_stackWidget->setCurrentWidget(fowordViewWidget);
+    emit afterPageSignal(thisID, fowordID, paraMap);
+}
+/****************************************************************************
+**
+** 函数名称：NbdpView::SlotCheckData
+** 功能概述: 中转信号上传给具体界面
+** 参数说明：CheckDataClass ×cdc：保存测试结果
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+void NbdpView::SlotCheckData(CheckDataClass* cdc)
+{
+    Logging::get()->info("NbdpView::SlotCheckData");
+    bool bTerminalCheck =  cdc->getTerminalCheck();
+    bool bReceiveCheck   =  cdc->getReceiveCheck();
+    bool bTransmissionCheck   =  cdc->getTransmissionCheck();
+    QList<bool> bTest;
+    bTest.append(bTerminalCheck);
+    bTest.append(bReceiveCheck);
+    bTest.append(bTransmissionCheck);
+    m_systemtest->selfTest(bTest);
+}
+/****************************************************************************
+**
+** 函数名称：NbdpView::SlotCheckData
+** 功能概述: 关机槽函数
+** 参数说明：
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+void NbdpView::SlotShutDown()
+{
+    Logging::get()->info("NbdpView::SlotShutDown");
+    // system("shutdown now");
+}
+/****************************************************************************
+**
+** 函数名称：NbdpView::SlotRadioConnectAnswer
+** 功能概述: 中转信号上传给具体界面
+** 参数说明：电台连接确认回复处理
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+void NbdpView::SlotRadioConnectAnswer(bool ret)
+{
+    Logging::get()->info("NbdpView::SlotRadioConnectAnswer");
+    ConfigUtils::setConnectStateFlag(ret);
+    
+    if (!ret)
+    {
+        IocMessage infomsg;
+        infomsg.move((SCREEN_SIZE_WIDTH - infomsg.width()) / 2, (SCREEN_SIZE_HEIGHT - infomsg.height()) / 2);
+        infomsg.SetIoc(":/images/images/Call_exclamatory_mark.png", 30, false);
+        infomsg.SetMessage(tr("Warning"), tr("Check interconnections between terminal and Main."), tr(""));
+        QFont font("Ubuntu", 18, QFont::Bold);
+        infomsg.SetFont(font);
+        infomsg.exec();
+        Transit::get()->EmitSignalRadioConnectAsk();
+    }
+}
+
+/****************************************************************************
+**
+** NbdpView::SlotDSCfollowComm
+** 功能概述: DSC后续通信
+** 参数说明：通讯数据
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+void NbdpView::SlotDSCfollowComm(CallInfoClass* cic)
+{
+    Logging::get()->info("NbdpView::SlotDSCfollowComm");
+    QMap <QString, QString> paraMap;
+    paraMap.insert(CALL_OR_RECEIVE, cic->getCallOrReceive());
+    QString strCallMode = cic->getCallType();
+    paraMap.insert(Constants::CALL_SET_CALL_MODE, strCallMode);
+    paraMap.insert(Constants::MESSAEGS_LIST_COL_NAME, cic->getCallName());
+    paraMap.insert(Constants::MESSAEGS_LIST_COL_CALLCODE, cic->getCallCode());
+    paraMap.insert(Constants::MESSAEGS_LIST_COL_TX, cic->getCallTx());
+    paraMap.insert(Constants::MESSAEGS_LIST_COL_RX, cic->getCallRx());
+    paraMap.insert(Constants::MESSAEGS_LIST_COL_CHANNEL, cic->getCallChannel());
+    QWidget* fowordViewWidget = m_viewManager.getViewByName(CALL_VIEW_NAME);
+    m_stackWidget->setCurrentWidget(fowordViewWidget);
+    emit afterPageSignal(HOME_VIEW_NAME, CALL_VIEW_NAME, paraMap);
+}
+
+int dofar_LED_initialization()
+{
+    int fd;
+    fd = open(LED_DEV, O_RDWR);
+    
+    if (-1 == fd)
+    {
+        printf("dofar_application >> open %s failed.\n", LED_DEV);
+        return -1;
+    }
+    
+    return fd;
+}
+
+int dofar_LED_AND_GPIO_control(int fd, int LED_num, int LED_level)
+{
+    return ioctl(fd, LED_num, LED_level);
+}
+
+void dofar_LED_release(int fd)
+{
+    close(fd);
+}
+/****************************************************************************
+**
+** 函数名称：NbdpView::keyPressEvent
+** 功能概述: 快捷键处理
+** 参数说明：QKeyEvent* event： 键值
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+#ifdef SIMULATE_MODE
+void NbdpView::keyPressEvent(QKeyEvent* event)
+{
+    Logging::get()->info("NbdpView::keyPressEvent");
+    int keyValue = event->key();
+    QString strMdf = "";
+    
+    if (event->modifiers() == Qt::AltModifier)
+    {
+        strMdf = "Alt";
+    }
+    else if (event->modifiers() == Qt::ControlModifier)
+    {
+        strMdf = "Ctrl";
+    }
+    else if (event->modifiers() == (Qt::AltModifier | Qt::ControlModifier))
+    {
+        strMdf = "Ctrl+Alt";
+        if(keyValue == Qt::Key_Right)
+        {
+            Logging::get()->info("Ctrl+Alt+->");
+            return;
+        }
+
+    }
+    else if (keyValue == Qt::Key_PowerDown)
+    {
+        int fd;
+        fd = dofar_LED_initialization();
+        
+        if (-1 == fd)
+        {
+            printf("dofar_test >> dofar_LED_initialization failed.\n");
+        }
+        else
+        {
+            dofar_LED_AND_GPIO_control(fd, ARM_CTR, 0);
+            dofar_LED_release(fd);
+        }
+    }
+    
+    Control::get()->KeyDownForTest(strMdf, keyValue);
+    QWidget::keyPressEvent(event);
+}
+#endif
+/****************************************************************************
+**
+** 函数名称：NbdpView::keyPressEvent
+** 功能概述: 连接超时上传
+** 参数说明：
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+void NbdpView::SlotTimeout()
+{
+    Logging::get()->info("NbdpView::SlotTimeout");
+    
+    if (ConfigUtils::isConnected())
+    {
+        return;
+    }
+    
+    ConfigUtils::setConnectStateFlag(false);
+    IocMessage infomsg;
+    infomsg.move((SCREEN_SIZE_WIDTH - infomsg.width()) / 2, (SCREEN_SIZE_HEIGHT - infomsg.height()) / 2);
+    infomsg.SetIoc(":/images/images/Call_exclamatory_mark.png", 30, false);
+    infomsg.SetMessage(tr("Warning"), tr("Check interconnections between terminal and Main."), tr(""));
+    QFont font("Ubuntu", 18, QFont::Bold);
+    infomsg.SetFont(font);
+    infomsg.exec();
+    Transit::get()->EmitSignalRadioConnectAsk();
+}
+/***************************
+ *  获取MMSI号
+ ********************************/
+ QString NbdpView::get_strSelfMMSI()
+ {
+     return this->m_statusWidget->get_strSelfMMSI();
+ }

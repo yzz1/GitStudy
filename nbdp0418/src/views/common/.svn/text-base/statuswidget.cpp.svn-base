@@ -1,0 +1,181 @@
+#include "statuswidget.h"
+#include <QDateTime>
+#include <QTimer>
+#include "views/common/constants.h"
+#include "core/utils/sqlitehelper.h"
+#include <QSqlRecord>
+#include <QDebug>
+#include "logging.h"
+/****************************************************************************
+**
+** 函数名称：StatusWidget::StatusWidget
+** 功能概述: 初始化
+** 参数说明
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+StatusWidget::StatusWidget(QWidget* parent)
+    : QWidget(parent)
+{
+    m_layout = new QHBoxLayout(this);
+    QTimer* timer = new QTimer(this);
+    connect(timer, SIGNAL(timeout()), this, SLOT(timer_deal_slot_function()));
+    timer->start(1000);
+    m_status = new QLabel("Idle", this);
+    QFont font = const_cast<QFont&>(m_status->font());
+    font.setBold(true);
+    font.setPointSize(13);
+    m_status->setFont(font);
+    m_status->setFixedWidth(200);
+    m_signal = new QLabel();
+    QPixmap pix(":/images/images/Status_Idle.png");
+    m_signal->setFixedWidth(60);
+    m_signal->setPixmap(pix);
+    m_mail = new QLabel();
+    QPixmap pix2(":/images/status_message_no");
+    m_mail->setFixedWidth(100);
+    m_mail->setPixmap(pix2);
+    m_time = new QLabel();
+    QDateTime dateTime = QDateTime::currentDateTime();
+    QString str = dateTime.toString("hh:mm:ss");
+    m_time->setText(str);
+    m_time->setFont(font);
+    m_mmsi = new QLabel();
+    m_mmsi->setText("MMSI");
+    m_mmsi->setFont(font);
+    m_model = new ContactsModel(this, SQLiteHelper::openConnection());
+    m_model->setTable(Constants::SYSTEM_SETTING_TABLE_NAME);
+    m_model->select();
+    QSqlRecord  sqlRecord = m_model->record(0);
+    QString mmsicode = sqlRecord.value(SYSTEM_SETTING_MMSICODE).toString();
+    qDebug() << "mmsicode = " << mmsicode;
+
+    m_messageModel = new ContactsModel(this, SQLiteHelper::openConnection());
+    m_messageModel->setTable(Constants::MESSAEGS_LIST_TABLE_NAME);
+    m_messageModel->setFilter(tr("showPix = '%1' ").arg(Constants::MESSAEGS_LIST_MESSAGE_UNREAD_FLAG));
+    m_messageModel->select();
+    if(m_messageModel->rowCount() > 0)
+    {
+        updateMailIcon(true);
+    }
+
+    m_mmsiNo = new QLabel();
+    m_mmsiNo->setText(mmsicode);
+    m_mmsiNo->setFont(font);
+    QPalette pe;
+    pe.setColor(QPalette::WindowText, Qt::gray);
+    m_status->setPalette(pe);
+    m_time->setPalette(pe);
+    m_mmsi->setPalette(pe);
+    m_mmsiNo->setPalette(pe);
+    m_layout->addWidget(m_signal, 0, Qt::AlignLeft);
+    m_layout->addWidget(m_status, 0, Qt::AlignLeft);
+    m_layout->addStretch(1);
+    m_layout->addWidget(m_mail, 0, Qt::AlignLeft);
+    m_layout->addStretch(5);
+    m_layout->addWidget(m_time, 0, Qt::AlignLeft);
+    m_layout->addStretch(5);
+    m_layout->addWidget(m_mmsi, 0, Qt::AlignLeft);
+    m_layout->addWidget(m_mmsiNo, 0, Qt::AlignLeft);
+    m_layout->addStretch(1);
+    m_layout->setContentsMargins(0, 0, 0, 0);
+    setLayout(m_layout);
+    setFixedHeight(56);
+}
+/****************************************************************************
+**
+** 函数名称：StatusWidget::SlotSetMMSI
+** 功能概述: 设置MMIS
+** 参数说明： 字符串
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+void StatusWidget::SlotSetMMSI(QString mmsi)
+{
+    m_mmsiNo->setText(mmsi);
+}
+/****************************************************************************
+**
+** 函数名称：StatusWidget::timer_deal_slot_function
+** 功能概述: 刷新时间
+** 参数说明： 
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+void StatusWidget::timer_deal_slot_function()
+{
+    QDateTime dateTime = QDateTime::currentDateTime();
+    QString str = dateTime.toString("hh:mm:ss");
+    m_time->setText(str);
+}
+/****************************************************************************
+**
+** 函数名称：StatusWidget::SlotState
+** 功能概述: 变更状态标识
+** 参数说明： 状态值
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+void StatusWidget::SlotState(QString state)
+{
+    Logging::get()->debug("StatusWidget::SlotState:" + state);
+    QString type = "Idle";
+
+    if (state ==  "Idle")
+    {
+        type = "Idle";
+    }
+    else if (state == "Scanning")
+    {
+        type = "Scanning";
+    }
+    else if (state ==  "ARQ Connected")
+    {
+        type = "Connected";
+    }
+    else if (state == "Outgoing SFEC")
+    {
+        type = "OutgoingFEC";
+    }
+    else if (state == "Outgoing BFEC")
+    {
+        type = "OutgoingBFEC";
+    }
+    else if (state == "Incoming FEC")
+    {
+        type = "IncomingFEC";
+    }
+
+    QPixmap pix(":/images/images/Status_" + type + ".png");
+    m_signal->setPixmap(pix);
+    m_status->setText(state);
+}
+/****************************************************************************
+**
+** 函数名称：StatusWidget::SlotState
+** 功能概述: 变更新信息标识图片
+** 参数说明： 信息状态
+** 作成日期：20151113
+** 作成者：  HSCN
+** 修改日期：20151113
+** 修改者：  HSCN
+**
+****************************************************************************/
+void StatusWidget::updateMailIcon(bool hasUnread)
+{
+    QString imgPath = hasUnread ? QString(":/images/status_message_yes") : QString(":/images/status_message_no");
+    QPixmap pix(imgPath);
+    m_mail->setPixmap(pix);
+}

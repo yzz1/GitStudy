@@ -1,0 +1,46 @@
+/****************************************************************************
+**
+** 文件名称： control.h
+** 功能概述: 协议控制类
+** 版本号：   1.0
+** 作成日期： 20151113
+** 作成者：   HSCN
+** 修改日期： 20151113
+** 修改者：   HSCN
+**
+****************************************************************************/
+#ifndef Control_H
+#define Control_H
+
+#include <QObject>
+#include "control_global.h"
+#include "transit.h"
+
+class CONTROLSHARED_EXPORT Control : public QObject
+{
+        Q_OBJECT
+    public:
+        static Control*  get();
+        ~Control();
+        void KeyDownForTest(QString strMdf, int intKc);
+        
+    private slots:
+        void SlotCallSetup(CallClass* cc);
+        void SlotConnectingCancel();
+        void SlotTalkSend(QString strNo, QString strMsg);
+        void SlotInterupt();
+        void SlotScan(ScanClass* sc);
+        void SlotCheck();
+        void SlotMarkTrans();
+        void SlotSpaceTrans();
+        void SlotDotTrans();
+        void SlotSlaveDelay(int i);
+        void SlotRadioConnectAsk();
+        
+    private:
+        Control();
+        static Control* m_pInstance;
+        QString m_strNo;
+};
+
+#endif // Control_H

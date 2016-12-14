@@ -1,0 +1,7 @@
+#ifndef MAINWINDOW_GLOBAL_H
+#define MAINWINDOW_GLOBAL_H
+
+
+
+
+#endif // MAINWINDOW_GLOBAL_H

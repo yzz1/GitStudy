@@ -1,0 +1,429 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>ScanFrequencyView</class>
+ <widget class="QWidget" name="ScanFrequencyView">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>544</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Form</string>
+  </property>
+  <widget class="TitleWidget" name="titleWidget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>800</width>
+     <height>45</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QWidget" name="controlWidget" native="true">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>470</y>
+     <width>800</width>
+     <height>72</height>
+    </rect>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"> background-color:rgb(10,21,31);</string>
+   </property>
+   <widget class="QToolButton" name="homeBtn">
+    <property name="geometry">
+     <rect>
+      <x>80</x>
+      <y>0</y>
+      <width>141</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QToolButton{
+    border:none;
+    outline: none;
+    color:rgb(86, 74, 74);
+
+     background: transparent;
+        font: 18pt &quot;Ubuntu&quot;;
+
+}
+QToolButton:focus{
+    color:white;
+
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string>&amp;Home</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normalon>:/images/home_normal</normalon>
+      <selectedoff>:/images/home_normal</selectedoff>
+      <selectedon>:/images/home_hover</selectedon>
+     </iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>56</width>
+      <height>42</height>
+     </size>
+    </property>
+    <property name="popupMode">
+     <enum>QToolButton::DelayedPopup</enum>
+    </property>
+    <property name="toolButtonStyle">
+     <enum>Qt::ToolButtonTextBesideIcon</enum>
+    </property>
+   </widget>
+   <widget class="QToolButton" name="receiveBtn">
+    <property name="geometry">
+     <rect>
+      <x>610</x>
+      <y>0</y>
+      <width>141</width>
+      <height>61</height>
+     </rect>
+    </property>
+    <property name="focusPolicy">
+     <enum>Qt::NoFocus</enum>
+    </property>
+    <property name="styleSheet">
+     <string notr="true">QToolButton{
+    border:none;
+    outline: none;
+    color:rgb(86, 74, 74);
+     background: transparent;
+        font: 18pt &quot;Ubuntu&quot;;
+
+}
+QToolButton:focus{
+    color:white;
+
+}
+
+</string>
+    </property>
+    <property name="text">
+     <string>Scan</string>
+    </property>
+    <property name="icon">
+     <iconset>
+      <normalon>:/images/images/Scan_ICO_SelYes.png</normalon>
+      <selectedoff>:/images/images/station_gray.png</selectedoff>
+      <selectedon>:/images/images/individual_white.png</selectedon>
+     </iconset>
+    </property>
+    <property name="iconSize">
+     <size>
+      <width>40</width>
+      <height>40</height>
+     </size>
+    </property>
+    <property name="popupMode">
+     <enum>QToolButton::DelayedPopup</enum>
+    </property>
+    <property name="toolButtonStyle">
+     <enum>Qt::ToolButtonTextBesideIcon</enum>
+    </property>
+   </widget>
+  </widget>
+  <widget class="QPushButton" name="startBnt">
+   <property name="geometry">
+    <rect>
+     <x>590</x>
+     <y>420</y>
+     <width>64</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{    border: none;
+    border-radius:10px;
+        color:rgb(86, 74, 74);
+    border-radius:10px;
+        background-color: rgb(16, 34, 56);
+        font: 18pt &quot;Ubuntu&quot;;
+}
+QPushButton:focus{
+    color:white;
+}</string>
+   </property>
+   <property name="text">
+    <string>&amp;Start</string>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="stopBnt">
+   <property name="geometry">
+    <rect>
+     <x>690</x>
+     <y>420</y>
+     <width>64</width>
+     <height>36</height>
+    </rect>
+   </property>
+   <property name="focusPolicy">
+    <enum>Qt::NoFocus</enum>
+   </property>
+   <property name="autoFillBackground">
+    <bool>false</bool>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QPushButton{    border: none;
+    border-radius:10px;
+        color:rgb(86, 74, 74);
+    border-radius:10px;
+        background-color: rgb(16, 34, 56);
+        font: 18pt &quot;Ubuntu&quot;;
+}
+QPushButton:focus{
+    color:white;
+}</string>
+   </property>
+   <property name="text">
+    <string>S&amp;top</string>
+   </property>
+   <property name="checkable">
+    <bool>true</bool>
+   </property>
+  </widget>
+  <widget class="Line" name="Contactsline">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>410</y>
+     <width>800</width>
+     <height>5</height>
+    </rect>
+   </property>
+   <property name="orientation">
+    <enum>Qt::Horizontal</enum>
+   </property>
+  </widget>
+  <widget class="QListWidget" name="listWidget">
+   <property name="geometry">
+    <rect>
+     <x>95</x>
+     <y>99</y>
+     <width>330</width>
+     <height>301</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QListWidget {
+    border:none;
+    outline: none;
+    background: transparent;
+    padding-right:30px;
+   color:gray;
+}
+
+QListWidget::item{
+   height:30px;
+    font: bold 20pt;
+}
+
+QListWidget:focus{
+    border:none;
+    outline: none;
+}
+
+QListWidget::item:focus{
+    border:none;
+    outline: none;
+    font: bold 17pt;
+    color:white;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(48, 60, 76, 255), stop:1 rgba(7, 61, 82, 255));
+}
+
+QListWidget::item:selected{
+    border: none;
+    outline: none;
+    font: bold 17pt;
+    color:white;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(48, 60, 76, 255), stop:1 rgba(7, 61, 82, 255));
+}</string>
+   </property>
+  </widget>
+  <widget class="QListWidget" name="listWidget_2">
+   <property name="geometry">
+    <rect>
+     <x>440</x>
+     <y>99</y>
+     <width>330</width>
+     <height>301</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">QListWidget {
+    border:none;
+    outline: none;
+    background: transparent;
+    padding-right:30px;
+   color:gray;
+}
+
+QListWidget::item{
+   height:30px;
+    font: bold 20pt;
+}
+
+QListWidget:focus{
+    border:none;
+    outline: none;
+}
+
+QListWidget::item:focus{
+    border:none;
+    outline: none;
+    font: bold 17pt;
+    color:white;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(48, 60, 76, 255), stop:1 rgba(7, 61, 82, 255));
+}
+
+QListWidget::item:selected{
+    border: none;
+    outline: none;
+    font: bold 17pt;
+    color:white;
+    background-color: qlineargradient(spread:pad, x1:0, y1:0, x2:0, y2:1, stop:0 rgba(48, 60, 76, 255), stop:1 rgba(7, 61, 82, 255));
+}</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label">
+   <property name="geometry">
+    <rect>
+     <x>100</x>
+     <y>60</y>
+     <width>67</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 57 20pt &quot;Ubuntu&quot;;
+        color: rgb(217, 215, 215);</string>
+   </property>
+   <property name="text">
+    <string>NO.</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_2">
+   <property name="geometry">
+    <rect>
+     <x>220</x>
+     <y>60</y>
+     <width>67</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 57 20pt &quot;Ubuntu&quot;;
+        color: rgb(217, 215, 215);</string>
+   </property>
+   <property name="text">
+    <string>Tx</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_3">
+   <property name="geometry">
+    <rect>
+     <x>320</x>
+     <y>60</y>
+     <width>67</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 57 20pt &quot;Ubuntu&quot;;
+        color: rgb(217, 215, 215);</string>
+   </property>
+   <property name="text">
+    <string>Rx</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_4">
+   <property name="geometry">
+    <rect>
+     <x>450</x>
+     <y>60</y>
+     <width>67</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 57 20pt &quot;Ubuntu&quot;;
+         color: rgb(217, 215, 215);</string>
+   </property>
+   <property name="text">
+    <string>NO.</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_5">
+   <property name="geometry">
+    <rect>
+     <x>570</x>
+     <y>60</y>
+     <width>67</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 57 20pt &quot;Ubuntu&quot;;
+        color: rgb(217, 215, 215);</string>
+   </property>
+   <property name="text">
+    <string>Tx</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>660</x>
+     <y>60</y>
+     <width>67</width>
+     <height>21</height>
+    </rect>
+   </property>
+   <property name="styleSheet">
+    <string notr="true">font: 57 20pt &quot;Ubuntu&quot;;
+         color: rgb(217, 215, 215);</string>
+   </property>
+   <property name="text">
+    <string>Rx</string>
+   </property>
+  </widget>
+ </widget>
+ <customwidgets>
+  <customwidget>
+   <class>TitleWidget</class>
+   <extends>QWidget</extends>
+   <header>widgets/titlewidget.h</header>
+   <container>1</container>
+  </customwidget>
+ </customwidgets>
+ <resources/>
+ <connections/>
+</ui>

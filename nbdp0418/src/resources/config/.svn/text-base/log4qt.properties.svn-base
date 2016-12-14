@@ -1,0 +1,12 @@
+
+log4j.rootLogger =DEBUG,Console,C
+
+log4j.appender.C = org.apache.log4j.DailyRollingFileAppender
+## log文件保存路径
+log4j.appender.C.File = /tmp/nbdp.log
+## 是否清空上次log文件
+log4j.appender.C.AppendFile=true
+## 输出DEBUG级别以上的日志
+log4j.appender.C.Threshold = INFO
+log4j.appender.C.layout = org.apache.log4j.PatternLayout
+log4j.appender.C.layout.ConversionPattern = %-d{yyyy-MM-dd HH:mm:ss}  [ %t:%r ] - [ %p ]  %m%n
